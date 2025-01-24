@@ -318,7 +318,7 @@ public Int64 Create(YourTable yourTable)
 using System;
 using System.Data.SqlClient;
 
-public static class DataWriterExtensions
+public static class DBWriteHelper
 {
 	public static object OrDBNull(this object someVar)
 	{
@@ -326,14 +326,17 @@ public static class DataWriterExtensions
 	}
 }
 
-public static class DataReaderExtensions
+public static class DBReadHelper
 {
 	public static T SafeGet<T>(this SqlDataReader reader, string colName)
 	{
 		var colIndex = reader.GetOrdinal(colName);
 		return reader.IsDBNull(colIndex) ? default(T) : reader.GetFieldValue<T>(colIndex);
 	}
+}
 
+public static class YourTableExtensions
+{
 	public static YourTable ToYourTable(this SqlDataReader rdr)
 	{
 		return new YourTable()
