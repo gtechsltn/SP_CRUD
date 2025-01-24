@@ -13,6 +13,7 @@
 + Rename string "**YourTable**"
 + View all column names and data types
 + View **primary key** column name and data type (ID, int) (ID, bigint ~ long)
++ Change **PRIMARY KEY** (**ID** + **TYPE**)
 + Replace some keywords by Sql Server Single Line Comment:
     + '#' -> '-- #'
     + 'SP' -> '-- SP'
