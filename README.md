@@ -311,3 +311,50 @@ public Int64 Create(YourTable yourTable)
 	}
 }
 ```
+
+# Helper classes
+```
+using System;
+using System.Data.SqlClient;
+
+public static class DataWriterExtensions
+{
+	public static object OrDBNull(this object someVar)
+	{
+		return someVar ?? DBNull.Value;
+	}
+}
+
+public static class DataReaderExtensions
+{
+	public static T SafeGet<T>(this SqlDataReader reader, string colName)
+	{
+		var colIndex = reader.GetOrdinal(colName);
+		return reader.IsDBNull(colIndex) ? default(T) : reader.GetFieldValue<T>(colIndex);
+	}
+
+	public static ActiveFilter ToActiveFilter(this SqlDataReader rdr)
+	{
+		return new ActiveFilter()
+		{
+			ID = SafeGet<Int64>(rdr, nameof(YourTable.ID)),
+			Name = SafeGet<String>(rdr, nameof(YourTable.Name)),
+			Created = SafeGet<DateTime>(rdr, nameof(YourTable.Created)),
+			CreatedBy = SafeGet<Guid>(rdr, nameof(YourTable.CreatedBy)),
+			Updated = SafeGet<DateTime>(rdr, nameof(YourTable.Updated)),
+			UpdatedBy = SafeGet<Guid>(rdr, nameof(YourTable.UpdatedBy)),
+			Deleted = SafeGet<DateTime?>(rdr, nameof(YourTable.Deleted)),
+			DeletedBy = SafeGet<Guid?>(rdr, nameof(YourTable.DeletedBy)),
+		};
+	}
+
+	public static YourTableDto ToYourTableDto(this SqlDataReader rdr)
+	{
+		return new YourTableDto()
+		{
+			ID = SafeGet<Int64>(rdr, nameof(ActiveFilter.ID)),
+			Name = SafeGet<String>(rdr, nameof(ActiveFilter.AFName)),
+		};
+	}
+}
+```
