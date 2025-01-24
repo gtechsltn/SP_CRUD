@@ -1,10 +1,11 @@
-# SP CRUD
+# SP CRUD (SQL Server + ADO.NET)
 + Create table
 + Auto increment primary key column
 + Get auto increment primary key column after call SP Create/Insert
 + Stored Procedure CRUD
 + Adding a column description / Setting SQL Server Field Descriptions / Edit column descriptions
 + Set default value
++ Helper classes to call SPs from C# using ADO.NET
 
 ## TODO
 + Open SSMS
