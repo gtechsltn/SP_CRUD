@@ -6,14 +6,14 @@
 + Adding a column description / Setting SQL Server Field Descriptions / Edit column descriptions
 + Set default value
 
-TODO: Please rename string "YourTable"
+TODO: Please rename string "**YourTable**"
 
-# DROP TABLE
+## DROP TABLE
 ```
 DROP TABLE [dbo].[YourTable]
 ```
 
-# CREATE TABLE IF NOT EXISTS
+## CREATE TABLE IF NOT EXISTS
 ```
 --======================================================================================================================================================
 IF (NOT EXISTS(SELECT * FROM INFORMATION_SCHEMA.TABLES WHERE TABLE_SCHEMA = 'dbo' AND TABLE_NAME = 'YourTable'))
@@ -48,9 +48,7 @@ END
 GO
 ```
 
-# SP for CRUD
-
-## SP Create: YourTable_Insert
+## SP CRUD (C) ~ Create: YourTable_Insert
 ```
 -- ====================================================================================================
 IF EXISTS (SELECT * FROM sys.objects WHERE object_id = OBJECT_ID(N'YourTable_Insert') AND type IN (N'P', N'PC'))
@@ -81,7 +79,7 @@ BEGIN
 END
 GO
 ```
-## SP Read: YourTable_GetByID
+## SP CRUD (R) ~ Read: YourTable_GetByID
 ```
 -- ====================================================================================================
 IF EXISTS (SELECT * FROM sys.objects WHERE object_id = OBJECT_ID(N'YourTable_GetByID') AND type IN (N'P', N'PC'))
@@ -110,7 +108,7 @@ END
 GO
 ```
 
-## SP Update: YourTable_Update
+## SP CRUD (U) ~ Update: YourTable_Update
 ```
 -- ====================================================================================================
 IF EXISTS (SELECT * FROM sys.objects WHERE object_id = OBJECT_ID(N'YourTable_Update') AND type IN (N'P', N'PC'))
@@ -143,7 +141,7 @@ END
 GO
 ```
 
-## SP Delete: YourTable_Delete
+## SP CRUD (D) ~ Delete: YourTable_Delete
 ```
 -- ====================================================================================================
 IF EXISTS (SELECT * FROM sys.objects WHERE object_id = OBJECT_ID(N'YourTable_Delete') AND type IN (N'P', N'PC'))
