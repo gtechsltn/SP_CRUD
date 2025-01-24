@@ -265,3 +265,49 @@ EXEC [dbo].[common_SetDescription] @tableName = N'YourTable'
     ,@objectDescription = N'Status Code = 1: Scheduled, 2: Processing, 3: Completed, 4: Failed'
 GO
 ```
+
+# ADO.NET
+## CRUD: C (Create)
+```
+public Int64 Create(YourTable yourTable)
+{
+	Int64 ID = default(Int64);
+	try
+	{
+		using (var cnn = new SqlConnection(_connString))
+		{
+			cnn.Open();
+
+			using (var cmd = cnn.CreateCommand())
+			{
+				cmd.CommandText = "YourTable_Insert";
+				cmd.CommandType = CommandType.StoredProcedure;
+
+				cmd.Parameters.Add(new SqlParameter("@Name", yourTable.Name.OrDBNull()));
+
+				var objParamID = new SqlParameter("@ID", SqlDbType.BigInt);
+				objParamID.Direction = ParameterDirection.Output;
+				cmd.Parameters.Add(objParamID);
+
+				var rowsAffected = cmd.ExecuteNonQuery();
+
+				Int64? keyValue = objParamID.Value as Int64?;
+				if (keyValue.HasValue)
+				{
+					ID = keyValue.Value;
+					yourTable.ID = ID;
+				}
+			}
+
+			cnn.Close();
+		}
+
+		return ID;
+	}
+	catch (Exception ex)
+	{
+		_log.Error(ex);
+		throw;
+	}
+}
+```
