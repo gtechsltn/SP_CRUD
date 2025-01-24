@@ -7,8 +7,12 @@
 + Set default value
 
 ## TODO
++ Open SSMS
++ Copy & paste
 + Rename string "**YourTable**"
 + Replace some keywords by Sql Server Single Line Comment: '#' -> '-- #'
+    + 'SP' -> '-- SP'
++ Run script
 
 ## DROP TABLE
 ```
@@ -45,7 +49,7 @@ GO
 IF NOT EXISTS (SELECT * FROM sys.objects WHERE OBJECT_ID = OBJECT_ID(N'[DF_TaskStatus]') AND TYPE = 'D')
 BEGIN
     --ALTER TABLE [dbo].[YourTable] ADD CONSTRAINT [DF_TaskStatus] DEFAULT 0 FOR [TaskStatus];
-    PRINT 'ALTER TABLE [dbo].[YourTable] ADD CONSTRAINT [DF_TaskStatus] DEFAULT 0 FOR [TaskStatus];'
+    PRINT 'ALTER TABLE [dbo].[YourTable] ADD CONSTRAINT [DF_TaskStatus] DEFAULT 0 FOR [TaskStatus]: DONE'
 END
 GO
 ```
