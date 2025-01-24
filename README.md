@@ -10,7 +10,8 @@
 + Open SSMS
 + Copy & paste
 + Rename string "**YourTable**"
-+ Replace some keywords by Sql Server Single Line Comment: '#' -> '-- #'
++ Replace some keywords by Sql Server Single Line Comment:
+    + '#' -> '-- #'
     + 'SP' -> '-- SP'
 + Run script
 
