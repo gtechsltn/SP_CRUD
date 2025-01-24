@@ -66,16 +66,14 @@ CREATE PROCEDURE [dbo].[YourTable_Insert] (
 )
 AS
 BEGIN
-	INSERT INTO [dbo].[YourTable] (
-    [Name]
-  )
-  VALUES  
-  (
-    @Name
-  )
-
-  --Retrieve SQL Server identity column values
-	SET @ID = SCOPE_IDENTITY()
+    INSERT INTO [dbo].[YourTable] (
+        [Name]
+    )
+    VALUES (
+        @Name
+    )
+    --Retrieve SQL Server identity column values
+    SET @ID = SCOPE_IDENTITY()
 END
 GO
 ```
