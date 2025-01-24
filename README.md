@@ -11,10 +11,17 @@
 + Open SSMS
 + Copy & paste
 + Rename string "**YourTable**"
++ View all column names and data types
++ View **primary key** column name and data type (ID, int) (ID, bigint ~ long)
 + Replace some keywords by Sql Server Single Line Comment:
     + '#' -> '-- #'
     + 'SP' -> '-- SP'
 + Run script
+
+## View Column Name and Data Type
+```
+SELECT COLUMN_NAME, DATA_TYPE FROM INFORMATION_SCHEMA.COLUMNS WHERE TABLE_NAME = 'YourTable';
+```
 
 ## DROP TABLE
 ```
