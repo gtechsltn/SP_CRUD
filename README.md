@@ -1,8 +1,10 @@
 # SP CRUD
-+ Create table script
-+ CRUD script
-+ Set description script
-+ Set default value script
++ Create table
++ Auto increment primary key column
++ Get auto increment primary key column after call SP Create/Insert
++ Stored Procedure CRUD
++ Adding a column description / Setting SQL Server Field Descriptions / Edit column descriptions
++ Set default value
 
 TODO: Please rename string "YourTable"
 
