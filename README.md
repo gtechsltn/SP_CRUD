@@ -18,21 +18,21 @@ DROP TABLE [dbo].[YourTable]
 --======================================================================================================================================================
 IF (NOT EXISTS(SELECT * FROM INFORMATION_SCHEMA.TABLES WHERE TABLE_SCHEMA = 'dbo' AND TABLE_NAME = 'YourTable'))
 BEGIN
-	CREATE TABLE [dbo].[YourTable](
-		[ID] [int] IDENTITY (1,1) NOT NULL
-		,[Name] [varchar](500) NULL
-    ,[TaskStatus] [int]
-    ,[Created] [datetime] NOT NULL
-	  ,[CreatedBy] [uniqueidentifier] NOT NULL
-	  ,[Updated] [datetime] NOT NULL
-	  ,[UpdatedBy] [uniqueidentifier] NOT NULL
-	  ,[Deleted] [datetime] NULL
-    ,[DeletedBy] [uniqueidentifier] NULL
-		,CONSTRAINT [PK_YourTable] PRIMARY KEY CLUSTERED 
-		(
-			[ID] ASC
-		)
+    CREATE TABLE [dbo].[YourTable](
+	[ID] [int] IDENTITY (1,1) NOT NULL
+	,[Name] [varchar](500) NULL
+	,[TaskStatus] [int]
+	,[Created] [datetime] NOT NULL
+	,[CreatedBy] [uniqueidentifier] NOT NULL
+	,[Updated] [datetime] NOT NULL
+	,[UpdatedBy] [uniqueidentifier] NOT NULL
+	,[Deleted] [datetime] NULL
+	,[DeletedBy] [uniqueidentifier] NULL
+	,CONSTRAINT [PK_YourTable] PRIMARY KEY CLUSTERED 
+	(
+	    [ID] ASC
 	)
+    )
 END
 GO
 ```
