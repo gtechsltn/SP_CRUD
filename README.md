@@ -333,9 +333,9 @@ public static class DataReaderExtensions
 		return reader.IsDBNull(colIndex) ? default(T) : reader.GetFieldValue<T>(colIndex);
 	}
 
-	public static ActiveFilter ToActiveFilter(this SqlDataReader rdr)
+	public static YourTable ToYourTable(this SqlDataReader rdr)
 	{
-		return new ActiveFilter()
+		return new YourTable()
 		{
 			ID = SafeGet<Int64>(rdr, nameof(YourTable.ID)),
 			Name = SafeGet<String>(rdr, nameof(YourTable.Name)),
@@ -352,8 +352,8 @@ public static class DataReaderExtensions
 	{
 		return new YourTableDto()
 		{
-			ID = SafeGet<Int64>(rdr, nameof(ActiveFilter.ID)),
-			Name = SafeGet<String>(rdr, nameof(ActiveFilter.AFName)),
+			ID = SafeGet<Int64>(rdr, nameof(YourTable.ID)),
+			Name = SafeGet<String>(rdr, nameof(YourTable.AFName)),
 		};
 	}
 }
