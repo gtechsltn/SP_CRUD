@@ -6,7 +6,9 @@
 + Adding a column description / Setting SQL Server Field Descriptions / Edit column descriptions
 + Set default value
 
-TODO: Please rename string "**YourTable**"
+## TODO
++ Rename string "**YourTable**"
++ Replace some keywords by Sql Server Single Line Comment: '#' -> '-- #'
 
 ## DROP TABLE
 ```
@@ -254,7 +256,7 @@ GO
 
 -- ====================================================================================================
 EXEC [dbo].[common_SetDescription] @tableName = N'YourTable'
-    ,@columnName = N'StatusCode'
+    ,@columnName = N'TaskStatus'
     ,@objectDescription = N'Status Code = 1: Scheduled, 2: Processing, 3: Completed, 4: Failed'
 GO
 ```
