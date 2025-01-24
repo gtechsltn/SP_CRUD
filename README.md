@@ -280,6 +280,7 @@ GO
 public Int64 Create(YourTable yourTable)
 {
 	Int64 ID = default(Int64);
+	bool isInsertSuccess = false;
 	try
 	{
 		using (var cnn = new SqlConnection(_connString))
@@ -305,6 +306,9 @@ public Int64 Create(YourTable yourTable)
 					ID = keyValue.Value;
 					yourTable.ID = ID;
 				}
+
+                        	ID = DBReadHelper.SafeGetInt64(objParamID.Value);
+                        	isInsertSuccess = rowsAffected > 0 && ID > 0;
 			}
 
 			cnn.Close();
@@ -339,6 +343,24 @@ public static class DBReadHelper
 	{
 		var colIndex = reader.GetOrdinal(colName);
 		return reader.IsDBNull(colIndex) ? default(T) : reader.GetFieldValue<T>(colIndex);
+	}
+
+	public static long SafeGetInt64(object longObj)
+	{
+	    if (longObj == DBNull.Value || longObj == null)
+	    {
+	        return 0;
+	    }
+	    return Convert.ToInt64(longObj);
+	}
+	
+	public static int SafeGetInt32(object intObj)
+	{
+	    if (intObj == DBNull.Value || intObj == null)
+	    {
+	        return 0;
+	    }
+	    return Convert.ToInt32(intObj);
 	}
 }
 
